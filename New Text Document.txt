@@ -1,0 +1,19 @@
+Project Idea: AI-Powered Code Review Assistant
+A Django + React web app that uses Llama 3 to analyze and review code, providing feedback on best practices, optimizations, and security flaws.
+
+Project Plan
+1. Backend (Django)
+Expose REST API endpoints to receive code snippets from the frontend.
+Use Llama 3 API to analyze the submitted code and return feedback.
+Store previous reviews and allow users to compare versions.
+2. Frontend (React)
+Simple code editor (like Monaco or CodeMirror).
+Button to submit code and receive AI-generated feedback.
+Display AI's analysis in a structured way (errors, optimizations, security issues).
+3. Llama 3 Integration
+Use Llama 3 to process code and provide insights.
+Train a custom prompt template to ensure reliable and structured responses.
+4. Deployment & Showcase
+Backend: Deploy Django API on Render, Railway, or AWS.
+Frontend: Deploy React app on Vercel or Netlify.
+Demo Video: Show how a user submits code and receives feedback.

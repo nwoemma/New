@@ -1,0 +1,140 @@
+1. Backend (Django) - API to process code review
+Create a Django project and install dependencies:
+
+bash
+Copy
+Edit
+pip install django djangorestframework openai
+a. Create a Django project and app
+bash
+Copy
+Edit
+django-admin startproject code_review
+cd code_review
+django-admin startapp api
+b. Settings (code_review/settings.py)
+python
+Copy
+Edit
+INSTALLED_APPS = [
+    'rest_framework',
+    'api',
+]
+c. API View (api/views.py)
+python
+Copy
+Edit
+import openai
+from django.conf import settings
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
+
+openai.api_key = "YOUR_LLAMA_3_API_KEY"  # Replace with actual key
+
+@api_view(["POST"])
+def review_code(request):
+    code_snippet = request.data.get("code", "")
+    if not code_snippet:
+        return Response({"error": "Code is required"}, status=400)
+
+    prompt = f"Analyze the following Python code and provide improvements:\n{code_snippet}"
+    response = openai.ChatCompletion.create(
+        model="llama-3",
+        messages=[{"role": "system", "content": "You're an expert code reviewer."},
+                  {"role": "user", "content": prompt}]
+    )
+
+    review = response["choices"][0]["message"]["content"]
+    return Response({"review": review})
+d. URL Configuration (api/urls.py)
+python
+Copy
+Edit
+from django.urls import path
+from .views import review_code
+
+urlpatterns = [
+    path('review/', review_code),
+]
+e. Connect URLs (code_review/urls.py)
+python
+Copy
+Edit
+from django.urls import path, include
+
+urlpatterns = [
+    path('api/', include('api.urls')),
+]
+f. Run the Django server
+bash
+Copy
+Edit
+python manage.py runserver
+2. Frontend (React) - UI for submitting code
+Create a React app:
+
+bash
+Copy
+Edit
+npx create-react-app frontend
+cd frontend
+npm install axios
+a. Code Review Form (src/App.js)
+javascript
+Copy
+Edit
+import React, { useState } from "react";
+import axios from "axios";
+
+function App() {
+  const [code, setCode] = useState("");
+  const [review, setReview] = useState("");
+
+  const submitCode = async () => {
+    try {
+      const response = await axios.post("http://127.0.0.1:8000/api/review/", { code });
+      setReview(response.data.review);
+    } catch (error) {
+      console.error("Error submitting code:", error);
+    }
+  };
+
+  return (
+    <div style={{ padding: "20px" }}>
+      <h2>AI Code Reviewer</h2>
+      <textarea
+        rows="6"
+        cols="60"
+        placeholder="Paste your code here..."
+        value={code}
+        onChange={(e) => setCode(e.target.value)}
+      />
+      <br />
+      <button onClick={submitCode} style={{ marginTop: "10px" }}>Submit Code</button>
+      <h3>Review:</h3>
+      <pre>{review}</pre>
+    </div>
+  );
+}
+
+export default App;
+b. Start React
+bash
+Copy
+Edit
+npm start
+3. Deployment Steps
+Backend (Django)
+Deploy to Railway, Render, or AWS.
+Use Gunicorn + PostgreSQL for production.
+Update API URL in React (frontend/src/App.js).
+Frontend (React)
+Deploy to Vercel or Netlify.
+Use environment variables for API URL.
+4. Submission Requirements
+📁 Zip File Contents:
+
+Backend (Django) – All code + requirements.txt
+Frontend (React) – All code
+README.md – Setup instructions
+Demo Video – Walkthrough (5 min max)
