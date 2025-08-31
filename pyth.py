@@ -175,7 +175,87 @@
 # print(remove_duplicate(s))
 
 
-def top_k_frequent(nums, k):
-    seen = set(nums)
-    for num in nums:
+# def top_k_frequent(nums, k):
+#     count = {}
+#     for item in nums:
+#         if item in count:
+#             count[item] += 1
+#         else:
+#             count[item]  = 1
+#     filtered = [key for key, val in count.items() if val >=k]   
+#     return filtered
         
+# e = top_k_frequent([1, 1, 1, 2, 2, 3], 2)
+# print(e)
+
+# def longest_consecutive_sequence(numbers:list):
+#     # organized = sorted(numbers)
+#     numbers.sort()
+#     n = 0
+#     while n <= len(numbers):
+#         diff = numbers[n] - numbers[n-1]
+#         if diff != 
+# class Solution:
+#     def isPalindrome(self, s: str) -> bool:
+#         s = s.replac
+
+# def counting(numbers):
+#     seen = {}
+#     for num in numbers:
+#         if num in seen:
+#             seen[num] += 1
+#         else:
+#             seen[num] = 1
+#     return seen
+# d = counting([1,2,2,3,1,1])
+# print(d)
+
+# def sec_max_num(nums):
+#     print(nums)
+#     largest = nums[0]
+#     second_largest = nums[1]
+#     for num in nums:
+#         if largest < num:
+#            largest = num
+#            nums.remove(largest)
+#         if second_largest < num:
+#             second_largest = num
+#     return second_largest 
+# d = [1,2,3,4,5]
+# print(sec_max_num(d))
+        
+# def algo_opti(nums:list, k:int) -> int : 
+#     unique = []          
+    
+# d = [4,1,2,2,5,5,7,7]
+# print(algo_opti(d,3))
+
+# def reverse_str(sentence=str):
+#     word =  [s for s in sentence.split()]
+#     reverse_word = word[::-1]
+#     return " ".join(reverse_word)
+
+# sentence = "I love Python"
+# print(reverse_str(sentence))
+
+# word = [1,2,4,6]
+# print(word[::-1])
+# from typing import List
+# class Solution:
+#     def findMedianSortedArrays(self, nums1: List[int], nums2: List[int]) -> float:
+#         nums = nums1 + nums2
+#         nums_sorted = sorted(nums)
+#         n = len(nums_sorted)  
+#         if n % 2 == 1:    
+#             med = nums_sorted[n //2]
+#         else:
+#             med =(nums_sorted[(n //2)-1] + nums_sorted[n //2])/2
+#         return med
+            
+            
+
+# nums1 = [1,2]
+# nums2= [3,4]
+
+# s =Solution()
+# print(s.findMedianSortedArrays(nums1, nums2))

@@ -68,6 +68,9 @@
 # vars()	Returns the __dict__ property of an object
 # zip()	Returns an iterator, from two or more iterators
 # '''
+sentence = "I love python"
+word =  [s for s in sentence.split()]
+print(word)
     
     
 

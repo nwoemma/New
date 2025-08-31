@@ -10,8 +10,8 @@
 #     break
 i= 0
 a = [34,54,53,43]
-while i < len(a):
+while i <= len(a):
     print(a[i])
     i += 1
     
-def
+    
